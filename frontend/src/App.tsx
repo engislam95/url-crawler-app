@@ -4,8 +4,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UrlManagement from "./pages/UrlManagement";
-import { Layout } from "lucide-react";
 import UrlDetail from "./pages/UrlDetail";
+import Layout from "./components/Layout";
 
 function App() {
   return (
