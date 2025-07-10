@@ -1,7 +1,7 @@
 package crawler
 
 import (
-    "fmt"
+	"fmt"
 	"net/http"
 	"net/url"
 	"strings"
@@ -97,7 +97,7 @@ func Crawl(pageURL string) (CrawlResult, error) {
 	}
 	f(doc)
 
-	// Detect HTML version 
+	// Detect HTML version (very basic for now)
 	if strings.Contains(resp.Proto, "1.1") {
 		res.HTMLVersion = "HTML 4.01 or lower"
 	} else {

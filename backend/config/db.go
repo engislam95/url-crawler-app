@@ -21,6 +21,6 @@ func ConnectDB() {
     fmt.Println("✅ Connected to MySQL database successfully")
     DB = db
 
-    db.AutoMigrate(&models.URL{})
+    DB.AutoMigrate(&models.User{}, &models.URL{})
 
 }
