@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { UrlResultsTable, type UrlResult } from "../components/UrlResultsTable";
 import api from "../api/axios";
 import { RefreshCcw, Plus } from "lucide-react";
+import toast from "react-hot-toast";
 
 const UrlManagement = () => {
   const [urls, setUrls] = useState<UrlResult[]>([]);
@@ -30,9 +31,10 @@ const UrlManagement = () => {
       const res = await api.post("/urls", { Link: newUrl.trim() });
       setUrls((prev) => [res.data.data, ...prev]);
       setNewUrl("");
+      toast.success("URL add successfully!");
     } catch (err) {
       console.error("❌ Failed to add URL:", err);
-      alert("Failed to add URL. Check if it’s valid or already exists.");
+      toast.error("Failed to add URL. Check if it’s valid or already exists.");
     } finally {
       setLoading(false);
     }
@@ -51,9 +53,10 @@ const UrlManagement = () => {
         })
       );
       await fetchURLs(); // Refresh state
+      toast.success("Re-analyze");
     } catch (err) {
       console.error("❌ Failed to re-analyze selected URLs:", err);
-      alert("Failed to re-analyze. Try again.");
+      toast.error("Failed to re-analyze. Try again.");
     } finally {
       setProcessing(false);
     }
@@ -63,10 +66,11 @@ const UrlManagement = () => {
     <div className="p-6 ">
       <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
         <input
-          type="text"
+          type="url"
           placeholder="Enter URL to analyze"
           value={newUrl}
           onChange={(e) => setNewUrl(e.target.value)}
+          required
           className="px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full md:w-96"
         />
         <button

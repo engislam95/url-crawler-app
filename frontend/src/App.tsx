@@ -6,25 +6,29 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UrlManagement from "./pages/UrlManagement";
 import UrlDetail from "./pages/UrlDetail";
 import Layout from "./components/Layout";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route
-        element={
-          <ProtectedRoute>
-            <Layout />
-          </ProtectedRoute>
-        }
-      >
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/url-manager" element={<UrlManagement />} />
-        <Route path="/urls/:id" element={<UrlDetail />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/url-manager" element={<UrlManagement />} />
+          <Route path="/urls/:id" element={<UrlDetail />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+      <Toaster position="top-right" reverseOrder={false} />
+    </>
   );
 }
 

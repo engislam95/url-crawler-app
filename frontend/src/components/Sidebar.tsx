@@ -84,10 +84,10 @@ const Sidebar = () => {
 
         {/* Logout Button */}
         <ul className="pb-4 space-y-1">
-          <li>
+          <li className="md:flex justify-center">
             <button
               onClick={handleLogout}
-              className="relative  flex flex-row items-center h-11 md:mx-4 px-5 w-full mb-10 cursor-pointer rounded-xl transition-colors duration-200 text-white bg-gray-600 border-l-4 border-transparent "
+              className="relative  flex flex-row justify-center items-center h-11 md:mx-4 px-5  w-full mb-10 cursor-pointer rounded-xl transition-colors duration-200 text-white bg-gray-600 border-l-4 border-transparent "
             >
               <span className="inline-flex justify-center items-center">
                 <LogOut className="w-5 h-5" />

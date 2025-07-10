@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { ChevronUp, ChevronDown, Trash2, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import toast from "react-hot-toast";
+import { fetchUrls } from "../api/urlService";
 
 export type UrlResult = {
   ID: number;
@@ -43,7 +45,7 @@ export const UrlResultsTable = ({
   }, [urls]);
 
   const navigate = useNavigate();
-  const itemsPerPage = 2;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     setUrlList(urls);
@@ -71,9 +73,13 @@ export const UrlResultsTable = ({
 
       // Notify parent
       setUrls?.((prev) => prev.filter((url) => url.ID !== id));
+      toast.success("URL deleted successfully!");
+      await fetchUrls();
     } catch (error) {
       console.error("❌ Failed to delete URL:", error);
-      alert("Failed to delete. Please try again.");
+      toast.success("URL add successfully!");
+
+      toast.error("Failed to delete. Please try again.");
     }
   };
 
@@ -206,6 +212,8 @@ export const UrlResultsTable = ({
                           ? "bg-green-500"
                           : url.Status === "running"
                           ? "bg-yellow-500 text-black"
+                          : url.Status === "error"
+                          ? "bg-red-700 text-white"
                           : "bg-blue-500"
                       }`}
                     >
