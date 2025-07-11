@@ -106,7 +106,17 @@ go run main.go
 
 ---
 
+### 📫 Postman Collection
+
+A ready-to-use Postman collection is included:  
+`backend/crawler.postman_collection.json`
+
+You can import it into Postman to test all API endpoints quickly.
+
+---
+
 ### 🧑‍💻 Frontend (React)
+
 
 ```bash
 cd frontend
