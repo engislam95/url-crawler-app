@@ -30,10 +30,6 @@ const Dashboard = () => {
         <div className="text-center text-gray-400 animate-pulse py-10">
           Loading data...
         </div>
-      ) : urls.length === 0 ? (
-        <div className="text-center text-gray-400 py-10">
-          No URL data available.
-        </div>
       ) : (
         <>
           <StatsCards urls={urls} />
